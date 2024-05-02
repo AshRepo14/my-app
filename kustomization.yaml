@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - application-deployment.yaml
+
+nameSuffix: -dev
+
+commonLabels:
+  app.kubernetes.io/name: my-app
+  app.kubernetes.io/instance: my-app-dev
+  app.kubernetes.io/version: v1.0
