@@ -16,6 +16,10 @@ spec:
       labels:
         app: nginx-app
     spec:
+      initContainers:
+      - name: wait-for-django
+        image: curlimages/curl
+        command: ['sh', '-c', 'until curl -s http://django-service:8000; do echo waiting for django; sleep 2; done;']
       containers:
       - name: nginx-container
         image: ash414/nginx-app4:v1.0
