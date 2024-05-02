@@ -2,7 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - application-deployment.yaml
+  - django-resources.yaml
+  - nginx-resources.yaml
+
+order:
+  - django-resources.yaml
+  - nginx-resources.yaml
 
 nameSuffix: -dev
 

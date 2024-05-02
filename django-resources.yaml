@@ -1,0 +1,36 @@
+---
+# Django Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-app
+  template:
+    metadata:
+      labels:
+        app: django-app
+    spec:
+      containers:
+      - name: django-container
+        image: ash414/e-cart-backend:v1.0
+        ports:
+        - containerPort: 8000
+---
+# Django Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-service
+  labels:
+    app: django-app
+spec:
+  selector:
+    app: django-app
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
