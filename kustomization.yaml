@@ -5,10 +5,6 @@ resources:
   - django-resources.yaml
   - nginx-resources.yaml
 
-order:
-  - django-resources.yaml
-  - nginx-resources.yaml
-
 nameSuffix: -dev
 
 commonLabels:
