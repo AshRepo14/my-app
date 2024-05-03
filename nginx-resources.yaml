@@ -1,30 +1,26 @@
-# ---
-# # Nginx Deployment
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: nginx-app
-#   labels:
-#     app: nginx-app
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: nginx-app
-#   template:
-#     metadata:
-#       labels:
-#         app: nginx-app
-#     spec:
-#       initContainers:
-#       - name: wait-for-django
-#         image: curlimages/curl
-#         command: ['sh', '-c', 'until curl -s http://django-service:8000; do echo waiting for django; sleep 2; done;']
-#       containers:
-#       - name: nginx-container
-#         image: ash414/nginx-app4:v1.0
-#         ports:
-#         - containerPort: 80
+---
+# Nginx Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-app
+  labels:
+    app: nginx-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-app
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+      - name: nginx-container
+        image: ash414/nginx-app4:v1.0
+        ports:
+        - containerPort: 80
 ---
 # Nginx Service
 apiVersion: v1
