@@ -21,6 +21,13 @@ spec:
         image: ash414/nginx-app4:v1.0
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: media-storage
+          mountPath: /media
+      volumes:
+      - name: media-storage
+        persistentVolumeClaim:
+          claimName: django-media-pvc
 ---
 # Nginx Service
 apiVersion: v1
@@ -50,3 +57,4 @@ spec:
   - port: 80
     targetPort: 80
     nodePort: 30007
+    
