@@ -19,6 +19,13 @@ spec:
         image: ash414/e-cart-backend:v1.0
         ports:
         - containerPort: 8000
+        volumeMounts:
+        - name: media-storage
+          mountPath: /app/media
+      volumes:
+      - name: media-storage
+        persistentVolumeClaim:
+          claimName: django-media-pvc
 ---
 # Django Service
 apiVersion: v1
